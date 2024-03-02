@@ -7,9 +7,9 @@ on:
     branches: [ main ]
 defaults:
   run:
-    working-directory: ./src
+    working-directory: ./tests
 jobs:
-  build:
+  tests:
 
     runs-on: ubuntu-latest
 
@@ -24,7 +24,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
-        pip install -r requirements.txt
         pip install -r tests/requirements.txt
     - name: flake8 test
       run: |
