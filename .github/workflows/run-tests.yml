@@ -18,14 +18,14 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.x
+        python-version: 3.11
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install -r requirements.txt
-        
+
     - name: flake8 test
       run: |
         # stop building when there are Python syntax errors
