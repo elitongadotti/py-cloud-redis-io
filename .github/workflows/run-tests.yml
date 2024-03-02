@@ -1,0 +1,32 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ main ]
+defaults:
+  run:
+    working-directory: ./src
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        pip install -r requirements.txt
+        pip install -r tests/requirements.txt
+    - name: flake8 test
+      run: |
+        # stop building when there are Python syntax errors
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
